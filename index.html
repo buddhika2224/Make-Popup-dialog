@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make Popup dialog</title>
+    <style>
+      .popup {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgb(196, 193, 193);
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .popup div {
+        background-color: beige;
+        border: 2px solid gray;
+        border-radius: 10px;
+        padding: 25px;
+      }
+
+      .popup input {
+        font-size: 20px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      h3{
+        color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My user Interface</h1>
+    <button id="mybtn">Click Me</button>
+    <h3><span id="nameOutput"></span></h3>
+
+    <div class="popup hidden" id="namePopup">
+      <div>
+        <h2>What is your name?</h2>
+        <input type="text" id="nameInput" placeholder="Your Name" />
+        <hr />
+        <button onclick="talkName()">Ok</button>
+        <button onclick="cancleNamePopup()">Cancle</button>
+      </div>
+    </div>
+
+    <script>
+      const mybtn = document.getElementById("mybtn");
+      const namePopup = document.getElementById("namePopup");
+      const nameInput = document.getElementById("nameInput");
+      mybtn.onclick = () => {
+        namePopup.classList.remove("hidden");
+        console.log("Clicked");
+      };
+
+      function cancleNamePopup() {
+        namePopup.classList.add("hidden");
+        nameInput.value = "";
+      }
+
+      function talkName() {
+        document.getElementById("nameOutput").textContent = "Welcome "+ nameInput.value;
+        cancleNamePopup();
+      }
+    </script>
+  </body>
+</html>
